@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">ppalumbo_A2</string>
+
+    //Buttons
+    <string name="new_game_button">New Game</string>
+    <string name="options_button">Options</string>
+    <string name="quit_button">Quit</string>
+    <string name="clear_score_button">Clear Score</string>
+    <string name="reset_button">Reset Game</string>
+
+    //Radio Buttons
+    <string name="player_one_button">One Player</string>
+    <string name="player_two_button">Two Player</string>
+    <string name="x_first_button">X's go first</string>
+    <string name="o_first_button">O's go first</string>
+    <string name="android_button">Android</string>
+    <string name="apple_button">Apple</string>
+
+    //Texts
+    <string name="pick_side_text">Player 1 Side</string>
+    <string name="games_played_text">Games Played: </string>
+    <string name="player1_score_text">Player 1 Score: </string>
+    <string name="player2_score_text">Player 2 Score: </string>
+
+</resources>

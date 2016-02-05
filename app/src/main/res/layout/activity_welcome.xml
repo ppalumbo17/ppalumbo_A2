@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/gameBackground"
+    tools:context="com.ppalumbo_a2.peter.ppalumbo_a2.WelcomeActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    //New Game button
+        <Button
+            android:id="@+id/newGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_game_button"
+            android:backgroundTint="@color/buttonColor"
+            android:padding="10dp"
+            />
+    //Options Button
+        <Button
+            android:id="@+id/options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/options_button"
+            android:backgroundTint="@color/buttonColor"
+            android:padding="10dp"/>
+    //Quit game
+        <Button
+            android:id="@+id/quit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/quit_button"
+            android:backgroundTint="@color/buttonColor"
+            android:padding="10dp"/>
+
+
+</LinearLayout>
