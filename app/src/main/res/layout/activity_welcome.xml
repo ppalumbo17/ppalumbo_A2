@@ -14,16 +14,17 @@
 
     //New Game button
         <Button
-            android:id="@+id/newGame"
+            android:id="@+id/newGame_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/new_game_button"
-            android:backgroundTint="@color/buttonColor"
+            android:background="@color/buttonColor"
+
             android:padding="10dp"
             />
     //Options Button
         <Button
-            android:id="@+id/options"
+            android:id="@+id/options_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/options_button"
@@ -31,7 +32,7 @@
             android:padding="10dp"/>
     //Quit game
         <Button
-            android:id="@+id/quit"
+            android:id="@+id/quit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/quit_button"

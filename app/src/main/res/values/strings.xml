@@ -11,8 +11,8 @@
     //Radio Buttons
     <string name="player_one_button">One Player</string>
     <string name="player_two_button">Two Player</string>
-    <string name="x_first_button">X's go first</string>
-    <string name="o_first_button">O's go first</string>
+    <string name="x_first_button">Xs go first</string>
+    <string name="o_first_button">Os go first</string>
     <string name="android_button">Android</string>
     <string name="apple_button">Apple</string>
 

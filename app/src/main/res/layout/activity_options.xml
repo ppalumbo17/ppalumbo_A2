@@ -14,40 +14,50 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|center"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         >
 
+        //Todo: Make string value
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of Players:"/>
         <RadioGroup
             android:id="@+id/playerRadioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <RadioButton
-                android:id="@+id/onePlayer"
+                android:id="@+id/onePlayer_radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/player_one_button"
                 />
             <RadioButton
-                android:id="@+id/twoPlayer"
+                android:id="@+id/twoPlayer_radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/player_two_button"/>
         </RadioGroup>
 
+        //Todo: Make String value
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Who goes first: "/>
         <RadioGroup
             android:id="@+id/firstPersonRadioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <RadioButton
-                android:id="@+id/xFirst"
+                android:id="@+id/xFirst_radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/x_first_button"
                 />
             <RadioButton
-                android:id="@+id/oFirst"
+                android:id="@+id/oFirst_radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/o_first_button"/>
@@ -67,13 +77,16 @@
             android:layout_gravity="center"/>
 
         <RadioGroup
+            android:id="@+id/sideRadioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <RadioButton
+                android:id="@+id/android_radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/android_button"/>
             <RadioButton
+                android:id="@+id/apple_radio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/apple_button"/>
@@ -85,7 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center">
         <Button
-            android:id="@+id/clearScore"
+            android:id="@+id/clearScore_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/buttonColor"
