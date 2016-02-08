@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.content.Intent;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -20,9 +19,9 @@ public class WelcomeActivity extends AppCompatActivity {
     private Button mQuit;
 
     //Options Saves
-    private int mOptionsPlayer;
-    private int mOptionsFirst;
-    private int mOptionsSide;
+    private int optionsPlayer;
+    private int optionsFirst;
+    private int optionsSide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +29,9 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
         if(savedInstanceState!=null){
-            mOptionsPlayer=savedInstanceState.getInt(WelcomeActivity.PLAYER_INDEX, 0);
-            mOptionsFirst=savedInstanceState.getInt(WelcomeActivity.FIRST_INDEX, 0);
-            mOptionsSide=savedInstanceState.getInt(WelcomeActivity.SIDE_INDEX, 0);
+            optionsPlayer =savedInstanceState.getInt(WelcomeActivity.PLAYER_INDEX, 0);
+            optionsFirst =savedInstanceState.getInt(WelcomeActivity.FIRST_INDEX, 0);
+            optionsSide =savedInstanceState.getInt(WelcomeActivity.SIDE_INDEX, 0);
 
         }
         mNewGame = (Button)findViewById(R.id.newGame_button);
@@ -43,9 +42,9 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(WelcomeActivity.this, GameActivity.class);
-                i.putExtra(PLAYER_INDEX, mOptionsPlayer);
-                i.putExtra(FIRST_INDEX, mOptionsFirst);
-                i.putExtra(SIDE_INDEX, mOptionsSide);
+                i.putExtra(PLAYER_INDEX, optionsPlayer);
+                i.putExtra(FIRST_INDEX, optionsFirst);
+                i.putExtra(SIDE_INDEX, optionsSide);
                 startActivityForResult(i,1);
 
             }
@@ -55,9 +54,9 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(WelcomeActivity.this, OptionsActivity.class);
-                i.putExtra(PLAYER_INDEX, mOptionsPlayer);
-                i.putExtra(FIRST_INDEX, mOptionsFirst);
-                i.putExtra(SIDE_INDEX, mOptionsSide);
+                i.putExtra(PLAYER_INDEX, optionsPlayer);
+                i.putExtra(FIRST_INDEX, optionsFirst);
+                i.putExtra(SIDE_INDEX, optionsSide);
 
                 startActivityForResult(i, 0);
             }
@@ -78,9 +77,9 @@ public class WelcomeActivity extends AppCompatActivity {
     public void onSaveInstanceState(Bundle savedInstanceState){
         super.onSaveInstanceState(savedInstanceState);
         Log.i(TAG, "onSavedInstanceState");
-        savedInstanceState.putInt(WelcomeActivity.PLAYER_INDEX, mOptionsPlayer);
-        savedInstanceState.putInt(WelcomeActivity.FIRST_INDEX, mOptionsFirst);
-        savedInstanceState.putInt(WelcomeActivity.SIDE_INDEX, mOptionsSide);
+        savedInstanceState.putInt(WelcomeActivity.PLAYER_INDEX, optionsPlayer);
+        savedInstanceState.putInt(WelcomeActivity.FIRST_INDEX, optionsFirst);
+        savedInstanceState.putInt(WelcomeActivity.SIDE_INDEX, optionsSide);
     }
 
     @Override
@@ -89,9 +88,9 @@ public class WelcomeActivity extends AppCompatActivity {
         //if(resultCode==0) {
         if(data==null)
             return;
-            mOptionsPlayer = data.getIntExtra(WelcomeActivity.PLAYER_INDEX, 0);
-            mOptionsFirst = data.getIntExtra(WelcomeActivity.FIRST_INDEX, 0);
-            mOptionsSide = data.getIntExtra(WelcomeActivity.SIDE_INDEX, 0);
+            optionsPlayer = data.getIntExtra(WelcomeActivity.PLAYER_INDEX, 0);
+            optionsFirst = data.getIntExtra(WelcomeActivity.FIRST_INDEX, 0);
+            optionsSide = data.getIntExtra(WelcomeActivity.SIDE_INDEX, 0);
         //}
     }
 

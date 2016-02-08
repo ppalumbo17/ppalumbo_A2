@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gameBackground"
+    android:padding="4dp"
     >
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="top|center"
+        android:layout_gravity="top|left"
         android:backgroundTint="@color/buttonColor"
         android:textColor="@color/gameText">
         <LinearLayout
@@ -62,15 +63,32 @@
                 android:padding="5dp"
                 android:text="0"/>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center">
+
+            <Button
+                style="@android:style/Animation"
+                android:theme="@android:style/Theme.Holo"
+                android:id="@+id/reset_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:text="@string/reset_button"
+                android:backgroundTint="@color/buttonColor"/>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/board_height"
+        android:layout_width="@dimen/board_height"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="3"
+        android:padding="5dp"
         android:layout_weight="1"
-        android:layout_gravity="center"
+        android:layout_gravity="right"
         android:background="@color/buttonColor">
         <LinearLayout
             android:layout_width="match_parent"
@@ -148,20 +166,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center">
 
-        <Button
-            style="@android:style/Animation"
-            android:theme="@android:style/Theme.Holo"
-            android:id="@+id/reset_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="@string/reset_button"
-            android:backgroundTint="@color/buttonColor"/>
-    </LinearLayout>
 
-</FrameLayout>
+
+</LinearLayout>

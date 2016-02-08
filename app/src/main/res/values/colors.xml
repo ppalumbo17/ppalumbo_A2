@@ -10,4 +10,5 @@
     <color name="gameBackground">#A4C639</color>
 
     <color name="gameText">#ffffff</color>
+    <color name="buttonReg">#fdfdfd</color>
 </resources>
