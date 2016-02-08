@@ -9,59 +9,74 @@ import android.widget.Button;
 
 public class WelcomeActivity extends AppCompatActivity {
 
+    //Svae Tags
     public static final String TAG = "WelcomeActivity.java";
-    public static final String PLAYER_INDEX = "player";
-    public static final String FIRST_INDEX = "first";
-    public static final String SIDE_INDEX = "side";
+    public static final String OPTION_PLAYER_INDEX = "player";
+    public static final String OPTION_FIRST_INDEX = "first";
+    public static final String OPTION_SIDE_INDEX = "side";
+    public static final String GAME_PLAYED = "gamesPlayed";
+    public static final String GAME_SCORE1 = "scoreplayer1";
+    public static final String GAME_SCORE2 = "scorePlayer2";
 
+    //Buttons
     private Button mNewGame;
     private Button mOptions;
     private Button mQuit;
 
     //Options Saves
-    private int optionsPlayer;
-    private int optionsFirst;
-    private int optionsSide;
+    private int optionsPlayer =1;
+    private int optionsFirst =0;
+    private int optionsSide =0;
+    private int gamesPlayed =0;
+    private int scorePlayer1 = 0;
+    private int scorePlayer2 = 0;
 
+    //On Create
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
         if(savedInstanceState!=null){
-            optionsPlayer =savedInstanceState.getInt(WelcomeActivity.PLAYER_INDEX, 0);
-            optionsFirst =savedInstanceState.getInt(WelcomeActivity.FIRST_INDEX, 0);
-            optionsSide =savedInstanceState.getInt(WelcomeActivity.SIDE_INDEX, 0);
+            optionsPlayer =savedInstanceState.getInt(OPTION_PLAYER_INDEX, 0);
+            optionsFirst =savedInstanceState.getInt(OPTION_FIRST_INDEX, 0);
+            optionsSide =savedInstanceState.getInt(OPTION_SIDE_INDEX, 0);
 
         }
         mNewGame = (Button)findViewById(R.id.newGame_button);
         mOptions = (Button)findViewById(R.id.options_button);
         mQuit = (Button)findViewById(R.id.quit_button);
 
+        //On Click for new game button
         mNewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(WelcomeActivity.this, GameActivity.class);
-                i.putExtra(PLAYER_INDEX, optionsPlayer);
-                i.putExtra(FIRST_INDEX, optionsFirst);
-                i.putExtra(SIDE_INDEX, optionsSide);
-                startActivityForResult(i,1);
+                Intent p = new Intent(WelcomeActivity.this, GameActivity.class);
+                p.putExtra(OPTION_PLAYER_INDEX, optionsPlayer);
+                p.putExtra(OPTION_FIRST_INDEX, optionsFirst);
+                p.putExtra(OPTION_SIDE_INDEX, optionsSide);
+                p.putExtra(GAME_PLAYED, gamesPlayed);
+                p.putExtra(GAME_SCORE1, scorePlayer1);
+                p.putExtra((GAME_SCORE2),scorePlayer2);
+                startActivityForResult(p, 0);
+                //onActivityResult(0,1,i);
 
             }
         });
-
+        //On Click for options
         mOptions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(WelcomeActivity.this, OptionsActivity.class);
-                i.putExtra(PLAYER_INDEX, optionsPlayer);
-                i.putExtra(FIRST_INDEX, optionsFirst);
-                i.putExtra(SIDE_INDEX, optionsSide);
-
+                i.putExtra(OPTION_PLAYER_INDEX, optionsPlayer);
+                i.putExtra(OPTION_FIRST_INDEX, optionsFirst);
+                i.putExtra(OPTION_SIDE_INDEX, optionsSide);
                 startActivityForResult(i, 0);
+                //onActivityResult(0, 1, i);
             }
         });
 
+        //On Click for Quit Button
         mQuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,24 +88,26 @@ public class WelcomeActivity extends AppCompatActivity {
 
     }
 
+    //TODO MAKE THIS WORK!
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState){
         super.onSaveInstanceState(savedInstanceState);
         Log.i(TAG, "onSavedInstanceState");
-        savedInstanceState.putInt(WelcomeActivity.PLAYER_INDEX, optionsPlayer);
-        savedInstanceState.putInt(WelcomeActivity.FIRST_INDEX, optionsFirst);
-        savedInstanceState.putInt(WelcomeActivity.SIDE_INDEX, optionsSide);
+        savedInstanceState.putInt(OPTION_PLAYER_INDEX, optionsPlayer);
+        savedInstanceState.putInt(OPTION_FIRST_INDEX, optionsFirst);
+        savedInstanceState.putInt(OPTION_SIDE_INDEX, optionsSide);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         //super.onActivityResult(requestCode, resultCode, data);
         //if(resultCode==0) {
-        if(data==null)
+        if(data==null) {
             return;
-            optionsPlayer = data.getIntExtra(WelcomeActivity.PLAYER_INDEX, 0);
-            optionsFirst = data.getIntExtra(WelcomeActivity.FIRST_INDEX, 0);
-            optionsSide = data.getIntExtra(WelcomeActivity.SIDE_INDEX, 0);
+        }
+            optionsPlayer = data.getIntExtra(OptionsActivity.PLAYER_INDEX,0);
+            optionsFirst = data.getIntExtra(OPTION_FIRST_INDEX,0);
+            optionsSide = data.getIntExtra(OPTION_SIDE_INDEX, 0);
         //}
     }
 

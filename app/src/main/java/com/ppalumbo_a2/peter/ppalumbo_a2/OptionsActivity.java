@@ -16,9 +16,9 @@ import android.widget.Toast;
 public class OptionsActivity extends AppCompatActivity {
 
     public static final String TAG = "OptionsActivity.java";
-//    public static final String PLAYER_INDEX = "player";
-//    public static final String FIRST_INDEX = "first";
-//    public static final String SIDE_INDEX = "side";
+    public static final String PLAYER_INDEX = "player";
+    public static final String FIRST_INDEX = "first";
+    public static final String SIDE_INDEX = "side";
 
     private Button mClearScore;
     private RadioGroup mPlayerGroup;
@@ -29,25 +29,24 @@ public class OptionsActivity extends AppCompatActivity {
     private int firstIndex;
     private int sideIndex;
 
-
-
+    //on Create
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
         if (savedInstanceState != null) {
-            playerIndex = savedInstanceState.getInt(WelcomeActivity.PLAYER_INDEX, 0);
-            firstIndex = savedInstanceState.getInt(WelcomeActivity.FIRST_INDEX, 0);
-            sideIndex = savedInstanceState.getInt(WelcomeActivity.SIDE_INDEX, 0);
-        } //else {
-            getValueResult();
-        //}
+            playerIndex = savedInstanceState.getInt(PLAYER_INDEX, 0);
+            firstIndex = savedInstanceState.getInt(FIRST_INDEX, 0);
+            sideIndex = savedInstanceState.getInt(SIDE_INDEX, 0);
+        } else {
+        getValueResult();
+        }
 
         mClearScore = (Button) findViewById(R.id.clearScore_button);
 
         checkRadio();
 
-//        mWhoFirstGroup.check(R.id.onePlayer_radio);
+
 
 
         mWhoFirstGroup.setOnClickListener(new View.OnClickListener() {
@@ -55,8 +54,7 @@ public class OptionsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 firstIndex = mWhoFirstGroup.getCheckedRadioButtonId();
                 setValueResult();
-//                String tmp = Integer.toString(mPlayerGroup.getCheckedRadioButtonId());
-//                makeToast(tmp);
+
             }
         });
         mOneSideGroup.setOnClickListener(new View.OnClickListener() {
@@ -64,8 +62,7 @@ public class OptionsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 sideIndex = mOneSideGroup.getCheckedRadioButtonId();
                 setValueResult();
-//                String tmp = Integer.toString(mPlayerGroup.getCheckedRadioButtonId());
-//                makeToast(tmp);
+
             }
         });
 
@@ -75,7 +72,8 @@ public class OptionsActivity extends AppCompatActivity {
 
     }
 
-    public void checkRadio(){
+    //Check the radio buttons in the radio group when initialized
+    public void checkRadio() {
         mPlayerGroup = (RadioGroup) findViewById(R.id.playerRadioGroup);
         mWhoFirstGroup = (RadioGroup) findViewById(R.id.firstPersonRadioGroup);
         mOneSideGroup = (RadioGroup) findViewById(R.id.sideRadioGroup);
@@ -83,71 +81,101 @@ public class OptionsActivity extends AppCompatActivity {
         //Player group
         if (playerIndex == 0) {
             mPlayerGroup.check(R.id.onePlayer_radio);
-        } else if(playerIndex ==1){
+        } else if (playerIndex == 1) {
             mPlayerGroup.check(R.id.twoPlayer_radio);
         }
         //X vs O group
-        if (firstIndex == 0)
-        {
+        if (firstIndex == 0) {
             mWhoFirstGroup.check(R.id.xFirst_radio);
-        }
-        else if(firstIndex ==1){
+        } else if (firstIndex == 1) {
             mWhoFirstGroup.check(R.id.oFirst_radio);
         }
         //Android vs Apple Group
-        if (sideIndex == 0)
-        {
+        if (sideIndex == 0) {
             mOneSideGroup.check(R.id.android_radio);
-        }
-        else if(sideIndex ==1){
+        } else if (sideIndex == 1) {
             mOneSideGroup.check(R.id.apple_radio);
         }
     }
+
+    //Save between rotations
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState){
+    public void onSaveInstanceState(Bundle savedInstanceState) {
         setValueResult();
         super.onSaveInstanceState(savedInstanceState);
         Log.i(TAG, "onSaveInstanceState");
-        savedInstanceState.putInt(WelcomeActivity.PLAYER_INDEX, playerIndex);
-        savedInstanceState.putInt(WelcomeActivity.FIRST_INDEX, firstIndex);
-        savedInstanceState.putInt(WelcomeActivity.SIDE_INDEX, sideIndex);
+        savedInstanceState.putInt(PLAYER_INDEX, playerIndex);
+        savedInstanceState.putInt(FIRST_INDEX, firstIndex);
+        savedInstanceState.putInt(SIDE_INDEX, sideIndex);
 
     }
-
-
-    public void setValueResult(){
+    //TODO make this work!
+    //Set values to intent received
+    public void setValueResult() {
         Intent data = new Intent();
-        data.putExtra(WelcomeActivity.PLAYER_INDEX, playerIndex);
-        data.putExtra(WelcomeActivity.FIRST_INDEX, firstIndex);
-        data.putExtra(WelcomeActivity.SIDE_INDEX, sideIndex);
+        data.putExtra(PLAYER_INDEX, playerIndex);
+        data.putExtra(FIRST_INDEX, firstIndex);
+        data.putExtra(SIDE_INDEX, sideIndex);
         setResult(RESULT_OK, data);
     }
-
-    public void getValueResult(){
+    //Send intent values back to welcome
+    public void getValueResult() {
         Intent data = getIntent();
-        playerIndex = data.getIntExtra(WelcomeActivity.PLAYER_INDEX, 0);
-        firstIndex = data.getIntExtra(WelcomeActivity.FIRST_INDEX, 0);
-        sideIndex = data.getIntExtra(WelcomeActivity.SIDE_INDEX, 0);
+        playerIndex = data.getIntExtra(WelcomeActivity.OPTION_PLAYER_INDEX, 1);
+        firstIndex = data.getIntExtra(WelcomeActivity.OPTION_FIRST_INDEX, 0);
+        sideIndex = data.getIntExtra(WelcomeActivity.OPTION_SIDE_INDEX, 0);
     }
-    public void makeToast(String toast){
+
+
+    public void makeToast(String toast) {
         Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
     }
 
-    public void onNumPlayerClicked(View v){
+    public void onNumPlayerClicked(View v) {
 
-                boolean checked = ((RadioButton)v).isChecked();
-                switch(v.getId()){
+        boolean checked = ((RadioButton) v).isChecked();
+        switch (v.getId()) {
 
-                    case R.id.onePlayer_radio:
-                        if(checked)
-                            playerIndex =0;
-                        break;
-                    case R.id.twoPlayer_radio:
-                        playerIndex =1;
-                        break;
-                }
-                setValueResult();
-            }
-
+            case R.id.onePlayer_radio:
+                if (checked)
+                    playerIndex = 1;
+                break;
+            case R.id.twoPlayer_radio:
+                playerIndex = 0;
+                break;
+        }
+        setValueResult();
     }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart() called");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause() called");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume() called");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop() called");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy() called");
+    }
+}
 

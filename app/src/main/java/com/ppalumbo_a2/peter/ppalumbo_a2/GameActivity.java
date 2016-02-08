@@ -87,7 +87,7 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-
+//Create Game board and buttons to click
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -210,15 +210,16 @@ public class GameActivity extends AppCompatActivity {
 
 
 
+//increase Player number
     public void setPlayer(){
         player++;
     }
-
+//get which player is currently playing
     public int getPlayer(){
         return player;
     }
 
-
+//check if player 1 Won
     public void checkWinner1(){
         if(button1 ==1 && button2 ==1 && button3==1 && !winnerChosen){
             Toast.makeText(this, "Player 1 Wins!", Toast.LENGTH_SHORT).show();
@@ -262,11 +263,11 @@ public class GameActivity extends AppCompatActivity {
         }
 
     }
-
+//Set if a winner has been received
     public void cantMove(){
         winnerChosen = true;
     }
-
+//check if player 2 won
     public void checkWinner2(){
         if(button1 ==2 && button2 ==2 && button3==2 && !winnerChosen){
             Toast.makeText(this, "Player 2 Wins!", Toast.LENGTH_SHORT).show();
@@ -309,7 +310,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
     }
-
+//Make a move whether against a player or computer
     public void canMove(int move, int rId){
         if(!checkDraw()){
             Toast.makeText(this, "It was a draw!", Toast.LENGTH_SHORT).show();
@@ -338,7 +339,7 @@ public class GameActivity extends AppCompatActivity {
         }
         setPlayer();
     }
-//TODO get computerMove working
+//Very simply goes in next available spot
     public void computerMove(){
         setButtonArray();
         int test = 0;
@@ -365,6 +366,7 @@ public class GameActivity extends AppCompatActivity {
 //        }
 ////        return;
     }
+    //Get which button move is made on
     public ImageButton getButton(int button){
         switch(button){
             case 1:
@@ -388,6 +390,7 @@ public class GameActivity extends AppCompatActivity {
         }
         return mSquare1;
     }
+    //set button value to check score against
     public void setButtonFirstPlayer(int button){
         switch(button){
             case 1:
@@ -452,7 +455,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
     }
-
+//get button value to check score
     public int getButtonValue(int buttonNum){
         switch(buttonNum){
             case 1:
@@ -476,6 +479,7 @@ public class GameActivity extends AppCompatActivity {
         }
         return buttonNum;
     }
+    //For buttonArray
     public void setButtonValue(int button, int buttonNum){
         switch(button){
             case 1:
@@ -507,7 +511,7 @@ public class GameActivity extends AppCompatActivity {
                 break;
         }
     }
-    //TODO reset game
+    //Reset Game Board and update score
 
     public void resetButtons(){
         mSquare1.setBackgroundResource(android.R.drawable.btn_default);
@@ -534,7 +538,7 @@ public class GameActivity extends AppCompatActivity {
         gamesPlayed++;
         updateScores();
     }
-
+    //Update Player Score
     private void updateScores(){
         mGames.setText(Integer.toString(gamesPlayed));
         mPlayer1Score.setText(Integer.toString(scorePlayer1));
@@ -546,12 +550,14 @@ public class GameActivity extends AppCompatActivity {
             buttonArray[i] = getButtonValue(i+1);
         }
     }
+    //For rotation to landscape
     private void getButtonArrayButtons(){
         for(int i = 0; i < buttonArray.length; i++){
             setButtonValue(i+1, buttonArray[i]);
             setImage(i+1,buttonArray[i]);
         }
     }
+    //Set board button image
     private void setImage(int button, int buttonValue){
         ImageButton tmp = getButton(button);
         switch (buttonValue){
@@ -566,6 +572,7 @@ public class GameActivity extends AppCompatActivity {
                 break;
         }
     }
+    //Check to see if it was a draw
     private boolean checkDraw(){
         setButtonArray();
         boolean ans = false;
